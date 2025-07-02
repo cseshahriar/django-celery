@@ -1,12 +1,47 @@
-process you’re setting up requires at least three services to run at the same time:
+3. Why Celery?
 
-Producer: Your Django app
-Message Broker: The Redis server
-Consumer: Your Celery app
+Without Celery:
+    * A single job application takes ~10 seconds (PDF + Upload + Email).
+    * Users leave frustrated.
+    * Django request threads are blocked, reducing server availability.
+
+With Celery:
+* Django returns immediately.
+* Heavy lifting is done in the background.
+
+process you’re setting up requires at least three services to run at the same time:
+    * Producer: Your Django app
+    * Message Broker: The Redis server
+    * Consumer: Your Celery app
+
+# Full Example of Task Lifecycle (with these enabled):
+Task Queued → SENT → STARTED → SUCCESS
+                        ↳ FAILURE
 
 # celery start
 python -m celery -A django_celery worker -E
+python -m celery -A django_celery flower
 
+Flower is a real-time web-based monitoring tool for Celery tasks. It helps you:
+
+✅ See all running, pending, successful, and failed tasks
+✅ Track task progress, retries, and execution time
+✅ Monitor active workers
+✅ Manually revoke, retry, or inspect tasks
+✅ Visualize queues and workload
+✅ View task arguments, results, and exceptions
+
+It's like a dashboard for Celery — very helpful in both development and production.
+
+http://localhost:5555/
+
+
+# environment variables
 .env
 EMAIL_HOST_PASSWORD="xxx"
 EMAIL_HOST_USER="xxx@gmail.com"
+
+User clicks "Apply Now" → Celery Task Queue:
+   ├─ ✅ Generate PDF from HTML template (5s)
+   ├─ ✅ Store PDF in S3 (3s)
+   └─ ✅ Send Email to HR + applicant (2s)
