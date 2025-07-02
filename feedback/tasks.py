@@ -2,13 +2,13 @@ from time import sleep
 from django.core.mail import send_mail
 from celery import shared_task, states
 from celery.exceptions import Ignore
-
+import requests
 
 @shared_task(bind=True, max_retries=3, default_retry_delay=60)  # Retry up to 3 times, with a delay of 60 seconds between retries
-def send_feedback_email_task(self, email_address, message):
+def send_feedback_email_task(self, email_address, message):  # self is celery
     """Sends an email when the feedback form has been submitted."""
     try:
-        print("------------------------------------- send_feedback_email_task called")
+        print("================= send_feedback_email_task called")
         sleep(10)  # Simulate expensive operation(s)
         send_mail(
             "Your Feedback",

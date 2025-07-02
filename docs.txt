@@ -45,3 +45,49 @@ User clicks "Apply Now" → Celery Task Queue:
    ├─ ✅ Generate PDF from HTML template (5s)
    ├─ ✅ Store PDF in S3 (3s)
    └─ ✅ Send Email to HR + applicant (2s)
+
+Celery for Django?
+------------------
+Celery is a 'distributed task queue' that allows you to run 'time-intensive tasks' in the 'background',
+ensuring your Django app remains responsive.
+
+Radis ?
+--------------------
+Redis acts as a message broker and can also serve as a results back end, 
+facilitating 'communication' between your 'Django app' and the 'Celery task queue'.
+
+Celery Task Do?
+-------------------
+A Celery task performs operations asynchronously, allowing you to handle time-consuming processes in the background without blocking your Django app
+
+
+What Celery Can Do ?
+--------------------
+Asynchronous Task Processing
+Scheduled Tasks (Periodic)
+Retry Failed Tasks
+Chained or Grouped Tasks
+Real-Time Processing
+Task Monitoring
+
+Examples of Tasks 
+--------------------
+Email & Notifications
+File & Image Processing
+
+⚙️ How Celery Works (Basic Flow)
+--------------------------------
+* You define a task (a Python function decorated with @shared_task).
+* You call the task asynchronously using .delay() or .apply_async().
+* A worker process (started via celery -A your_project worker) picks up the task from the broker.
+* The broker (like Redis or RabbitMQ) is the message queue that passes tasks from Django to the worker.
+* The worker executes the task, and optionally stores the result in a result backend (like Redis, DB).
+* (Optional) You use Flower to monitor the task execution.
+
+Common Celery Setup in Django
+-----------------------------
+Broker: Redis or RabbitMQ
+Result Backend: Redis, Database, or other cache
+Task Queue: Celery
+Scheduler (optional): Celery Beat
+Monitoring (optional): Flower
