@@ -1,0 +1,42 @@
+{% extends "./base.html" %}
+
+{% block title %}Home - Success{% endblock %}
+
+{% block extra_head %}
+<style>
+    body {
+      background-color: #fff;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .thank-you-container {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .thank-you-container h1 {
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .thank-you-container p {
+      font-size: 1.1rem;
+    }
+    .thank-you-container a {
+      color: #c41c44;
+      text-decoration: none;
+    }
+    .thank-you-container a:hover {
+      text-decoration: underline;
+    }
+  </style>
+{% endblock %}
+
+{% block content %}
+  <div class="thank-you-container text-center">
+    <h1>Thank You!</h1>
+    <p>Your feedback has been recorded.</p>
+    <p>If you have more to say, you can <a href="{% url 'feedback' %}">submit another feedback</a> response.</p>
+  </div>
+{% endblock %}

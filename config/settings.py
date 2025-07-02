@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     # custom apps
     'django_celery',
+    'feedback',
 ]
 
 MIDDLEWARE = [
@@ -57,7 +58,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ["templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -131,3 +132,14 @@ CELERY_RESULT_BACKEND = "redis://localhost:6379"
 
 # CELERY_BROKER_URL = "amqp://myuser:mypassword@localhost:5672/myvhost"
 # CELERY_RESULT_BACKEND = "redis://localhost:6379"
+
+
+# settings.py
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+EMAIL_HOST_USER = 'cse.shahriar.hosen@gmail.com'
+EMAIL_HOST_PASSWORD = 'ojnx zbhn wdfb rfbn'  # Use App Password if 2FA enabled
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER

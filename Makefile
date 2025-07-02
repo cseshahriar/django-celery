@@ -29,10 +29,3 @@ makemessages:
 
 compilemessages:
 	$(DJANGO) compilemessages
-
-startapp:
-	@if [ -z "$(app)" ]; then \
-		echo "Error: Please provide app name using 'make startapp app=<appname>'"; \
-	else \
-		$(DJANGO) startapp $(app); \
-	fi
