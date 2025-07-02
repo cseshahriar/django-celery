@@ -116,3 +116,5 @@ Save
     Enabled: ✅ Checked
 
 Now send_reminder will run every 2 minutes.
+
+# https://testdriven.io/blog/django-celery-periodic-tasks/

@@ -156,16 +156,30 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 CELERY_RESULT_BACKEND = 'django-db'
 CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers.DatabaseScheduler'
 
-
+CELERY_TIMEZONE = 'Asia/Dhaka' 
 CELERY_TASK_TRACK_STARTED = True
 CELERY_TASK_SEND_SENT_EVENT = True
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TASK_SERIALIZER = 'json'
 
 CELERY_TASK_DEFAULT_RETRY_DELAY = 30  # Default retry delay (in seconds)
 CELERY_TASK_MAX_RETRIES = 5  # Max number of retries
 CELERY_TASK_ACKS_LATE = True  # Ensure the task is acknowledged only after successful completion
 CELERY_TASK_RETRY_JUST_AFTER_FAILURE = True  # Retry immediately after failure
 
+# REDIS CACHE
+# CACHES = {
+#     "default": {
+#         "BACKEND": "django_redis.cache.RedisCache",
+#         "LOCATION": f"redis://127.0.0.1:6379/1",
+#         "OPTIONS": {
+#             "CLIENT_CLASS": "django_redis.client.DefaultClient",
+#         },
+#     }
+# }
 
+
+# logging
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
