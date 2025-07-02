@@ -4,5 +4,9 @@ Producer: Your Django app
 Message Broker: The Redis server
 Consumer: Your Celery app
 
-
+# celery start
 python -m celery -A django_celery worker -E
+
+.env
+EMAIL_HOST_PASSWORD="xxx"
+EMAIL_HOST_USER="xxx@gmail.com"
