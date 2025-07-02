@@ -86,8 +86,33 @@ File & Image Processing
 
 Common Celery Setup in Django
 -----------------------------
-Broker: Redis or RabbitMQ
-Result Backend: Redis, Database, or other cache
-Task Queue: Celery
-Scheduler (optional): Celery Beat
-Monitoring (optional): Flower
+    Broker: Redis or RabbitMQ
+    Result Backend: Redis, Database, or other cache
+    Task Queue: Celery
+    Scheduler (optional): Celery Beat
+    Monitoring (optional): Flower
+
+What You Now Know:
+--------------------
+    How Celery works with Django using task queues
+    How to send emails/SMS/WhatsApp asynchronously
+    How to handle bulk messaging (like to 1000+ users)
+    How to use .delay() and .apply_async()
+    Basics of error handling, batching, and throttling
+
+
+Step-by-Step in Django Admin:
+* Go to Admin Panel → Interval Schedule → Add
+* Set:
+    Every: 2
+    Period: Minutes
+Save
+
+* Go to Periodic Tasks → Add
+* Set:
+    Name: Print every 2 minutes
+    Task: myapp.tasks.send_reminder ← replace with your actual task
+    Interval: select the one you just created
+    Enabled: ✅ Checked
+
+Now send_reminder will run every 2 minutes.
