@@ -1,0 +1,38 @@
+# author: @cseshahriar
+.PHONY: migrations migrate start superuser update clear-pycache collectstatic makemessages compilemessages
+
+DJANGO=python manage.py
+
+migrations:
+	$(DJANGO) makemigrations
+
+migrate:
+	$(DJANGO) migrate
+
+start:
+	$(DJANGO) runserver 0.0.0.0:9000
+
+superuser:
+	$(DJANGO) createsuperuser
+
+update:
+	pip install -r requirements.txt
+
+clear-pycache:
+	find . -type d -name '__pycache__' -exec rm -r {} +
+
+collectstatic:
+	$(DJANGO) collectstatic --noinput
+
+makemessages:
+	$(DJANGO) makemessages -l en
+
+compilemessages:
+	$(DJANGO) compilemessages
+
+startapp:
+	@if [ -z "$(app)" ]; then \
+		echo "Error: Please provide app name using 'make startapp app=<appname>'"; \
+	else \
+		$(DJANGO) startapp $(app); \
+	fi

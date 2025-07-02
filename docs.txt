@@ -1,0 +1,8 @@
+process you’re setting up requires at least three services to run at the same time:
+
+Producer: Your Django app
+Message Broker: The Redis server
+Consumer: Your Celery app
+
+
+python -m celery -A django_celery worker -E
