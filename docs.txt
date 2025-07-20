@@ -53,7 +53,7 @@ ensuring your Django app remains responsive.
 
 Radis ?
 --------------------
-Redis acts as a message broker and can also serve as a results back end, 
+Redis acts as a message broker and can also serve as a results back end,
 facilitating 'communication' between your 'Django app' and the 'Celery task queue'.
 
 Celery Task Do?
@@ -70,7 +70,22 @@ Chained or Grouped Tasks
 Real-Time Processing
 Task Monitoring
 
-Examples of Tasks 
+
+Celery Tasks
+----------------------------
+* Asynchronous Task Execution
+* Distributed Task Queue
+* Task Scheduling and Periodic Tasks
+* Result Handling
+* Error Handling and Retry Mechanism
+* Monitoring and Management
+
+Message Provider --> Message Broker --> Celery Worker --> Result Backend
+Django            --> Redis             --> Celery         --> DB
+Message Provider  --> Message Broker    --> Celery Worker  --> Result Backend
+Django --> Redis --> Celery --> DB
+
+Examples of Tasks
 --------------------
 Email & Notifications
 File & Image Processing
@@ -118,3 +133,7 @@ Save
 Now send_reminder will run every 2 minutes.
 
 # https://testdriven.io/blog/django-celery-periodic-tasks/
+https://redis.io/docs/latest/operate/oss_and_stack/install/archive/install-redis/install-redis-on-linux/
+
+
+=========================== docker ============================================

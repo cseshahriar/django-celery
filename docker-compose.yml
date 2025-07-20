@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  django:
+    container_name: django
+    build:
+      context: .  # Set build context to the project root
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/usr/src/app/ # Map the entire project root to /usr/src/app inside the container
+    ports:
+      - 8001:8000
+    environment:
+      - DEBUG=1
+      - SECRET_KEY=0930jd30j9jd09j09j109fj01j9f
+      - ALLOWED_HOSTS=localhost,127.0.0.1
