@@ -1,4 +1,3 @@
-# config/celery.py
 
 import os
 from celery import Celery
@@ -7,7 +6,7 @@ from celery import Celery
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")  # Adjust to your project name
 
 # Create Celery app instance
-app = Celery("django_celery")
+app = Celery("newapp")
 
 # Load settings from Django settings.py using CELERY_ prefix
 app.config_from_object("django.conf:settings", namespace="CELERY")
