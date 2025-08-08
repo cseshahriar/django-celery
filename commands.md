@@ -43,3 +43,9 @@ task_chain.apply_async()
 
 celery inspect active
 celery inspect active_queues
+
+celery -A config flower
+
+http://localhost:15672/
+http://0.0.0.0:5555/tasks
+http://127.0.0.1:8000/admin/django_celery_results/taskresult/

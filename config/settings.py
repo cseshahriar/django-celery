@@ -124,46 +124,45 @@ EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
-# Celery settings
-# settings.py
+####################
+# Celery settings  #
+####################
 
-# rabbitmq
-CELERY_BROKER_URL = 'redis://localhost:6379/0'
+# Use RabbitMQ as the broker since that's what you have uncommented.
+# You must have RabbitMQ running for this to work.
+CELERY_BROKER_URL = 'amqp://127.0.0.1:5672/'
 
-# Celery Configuration
-# CELERY_BROKER_URL = 'redis://localhost:6379/0'
-
-# celery result
-# CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+# The result backend is where Celery stores task results.
+# Using 'django-db' means results are stored in your Django database.
+# This requires you to run 'python manage.py migrate' to create the necessary tables.
 CELERY_RESULT_BACKEND = 'django-db'
 CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers.DatabaseScheduler'
 
-# pick which cache from the CACHES setting.
-CELERY_CACHE_BACKEND = 'default'
-
-# django setting.
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
-        'LOCATION': 'django-db',
-    }
-}
-
-# Celery Configuration Options
-# CELERY_TIMEZONE = 'Asia/Dhaka'
-CELERY_TIMEZONE = 'UTC'
-CELERY_TASK_TRACK_STARTED = True
-CELERY_TASK_TIME_LIMIT = 30 * 60
-CELERY_TASK_SEND_SENT_EVENT = True
-CELERY_RESULT_SERIALIZER = 'json'
+CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'UTC'
 
-# CELERY_TASK_DEFAULT_RETRY_DELAY = 30  # Default retry delay (in seconds)
-# CELERY_TASK_MAX_RETRIES = 5  # Max number of retries
-# CELERY_TASK_ACKS_LATE = True  # Ensure the task is acknowledged only after successful completion
-# CELERY_TASK_RETRY_JUST_AFTER_FAILURE = True  # Retry immediately after failure
+# The cache backend is not needed if you're using 'django-db' for the result backend.
+# The CELERY_CACHE_BACKEND setting is mostly for when you're using a cache system
+# as your result backend, like Redis. You can remove this.
+# CELERY_CACHE_BACKEND = 'django-cache'
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+#         'LOCATION': 'django-db',
+#     }
+# }
 
-# logging
+# You've already defined these settings in celery.py, but it's good practice
+# to keep them in one place, like settings.py, to avoid conflicts.
+CELERY_TASK_ACKS_LATE = True
+CELERY_TASK_DEFAULT_RETRY_DELAY = 30
+CELERY_TASK_MAX_RETRIES = 5
+CELERY_TASK_RETRY_JUST_AFTER_FAILURE = True
+
+
+# logging - these are fine
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
