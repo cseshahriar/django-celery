@@ -142,6 +142,7 @@ CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'UTC'
+CELERY_WORKER_CONCURRENCY = 1
 
 # The cache backend is not needed if you're using 'django-db' for the result backend.
 # The CELERY_CACHE_BACKEND setting is mostly for when you're using a cache system
