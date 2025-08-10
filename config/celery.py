@@ -16,3 +16,7 @@ app.config_from_object('django.conf:settings', namespace='CELERY')
 # This line is crucial for a Django project!
 # It tells Celery to look for 'tasks.py' files in all your installed apps.
 app.autodiscover_tasks()
+
+
+app.conf.tasks_acks_late = True
+app.conf.tasks_reject_on_worker_lost = True
