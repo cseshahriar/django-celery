@@ -49,3 +49,26 @@ celery -A config flower
 http://localhost:15672/
 http://0.0.0.0:5555/tasks
 http://127.0.0.1:8000/admin/django_celery_results/taskresult/
+
+
+Types of Scheduling Mechanisms:
+* Time-based Scheduling
+* Event-based Scheduling
+* Dependency-based Scheduling
+
+Benefits of Automated Task Scheduling:
+* Increased Efficiency
+* Optimal Resource Utilization
+* Improved Scalability
+* Enhanced Reliability
+
+Understanding Periodic Tasks:
+* Time base recurring tasks
+
+Configuring Celery for Periodic Tasks:
+* Celery beat scheduler configuration
+* Defining Periodic Tasks
+* Customizing Periodic Tasks
+
+
+celery -A worker -l INFO -Q tasks,dead_letter -E -B
